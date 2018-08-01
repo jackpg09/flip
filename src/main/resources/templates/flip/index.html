@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body class="container">
+
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<p th:unless="${discs} and ${discs.size()}">no discs :(</p>
+
+<table class="table">
+
+    <tr>
+        <th>Name</th>
+        <th>Brand</th>
+        <th>Club Type</th>
+    </tr>
+
+    <tr th:each="disc : ${discs}">
+        <td th:text="${disc.name}"></td>
+        <td th:text="${disc.brand}"></td>
+        <td th:text="${disc.clubType}"></td>
+        <td>
+           <p>edit</p>
+        </td>
+    </tr>
+
+</table>
+
+<nav>
+    <a href="/flip/add">Add</a> |
+    <a href="/disc/remove">Remove</a>
+</nav>
+
+
+
+</body>
+</html>
