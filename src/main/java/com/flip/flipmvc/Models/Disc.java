@@ -1,17 +1,10 @@
 package com.flip.flipmvc.Models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
-@Entity
+@MappedSuperclass
 public class Disc {
 
-    @Id
-    @GeneratedValue
-    @Column(name="disc_id")
-    private int id;
     private String name;
     private String brand;
     private ClubType clubType;

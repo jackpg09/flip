@@ -1,8 +1,9 @@
 package com.flip.flipmvc.Controllers;
 
 import com.flip.flipmvc.Models.ClubType;
-import com.flip.flipmvc.Models.Data.DiscDao;
+import com.flip.flipmvc.Models.Data.MarketDiscDao;
 import com.flip.flipmvc.Models.Disc;
+import com.flip.flipmvc.Models.MarketDisc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class FlipController {
 
     @Autowired
-    DiscDao discDao;
+    MarketDiscDao marketDiscDao;
 
     @RequestMapping(value = "")
     public String index(Model model) {
 
-        model.addAttribute("discs",discDao.findAll());
+        model.addAttribute("discs", marketDiscDao.findAll());
         model.addAttribute("title", "Discs");
         return "flip/index";
     }
@@ -34,9 +35,9 @@ public class FlipController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String processAddDiscForm(Disc newDisc, Model model) {
+    public String processAddDiscForm(MarketDisc newDisc, Model model) {
 
-        discDao.save(newDisc);
+        marketDiscDao.save(newDisc);
 
         return "redirect:";
     }
