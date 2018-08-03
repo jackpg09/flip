@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<div class="container body-content">
+    <div>
+        <div th:object="${disc}">
+
+            <div>
+                <table class="table">
+                    <tr>
+                        <th>Name</th>
+                        <td th:text="*{name}"></td>
+                    </tr>
+                    <tr>
+                        <th>Brand</th>
+                        <td th:text="*{brand}"></td>
+                    </tr>
+                    <tr>
+                        <th>Club Type</th>
+                        <td th:text="*{clubType}"></td>
+                    </tr>
+                    <tr>
+                        <th>Color</th>
+                        <td th:text="*{color}"></td>
+                    </tr>
+                    <tr>
+                        <th>Plastic</th>
+                        <td th:text="*{plastic}"></td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td th:text="*{description}"></td>
+                    </tr>
+                    <tr>
+                        <th>Speed</th>
+                        <td th:text="*{speed}"></td>
+                    </tr>
+                    <tr>
+                        <th>Glide</th>
+                        <td th:text="*{glide}"></td>
+                    </tr>
+                    <tr>
+                        <th>Turn</th>
+                        <td th:text="*{turn}"></td>
+                    </tr>
+                    <tr>
+                        <th>Fade</th>
+                        <td th:text="*{fade}"></td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</body>
+</html>

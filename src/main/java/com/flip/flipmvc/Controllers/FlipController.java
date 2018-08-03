@@ -2,11 +2,11 @@ package com.flip.flipmvc.Controllers;
 
 import com.flip.flipmvc.Models.ClubType;
 import com.flip.flipmvc.Models.Data.MarketDiscDao;
-import com.flip.flipmvc.Models.Disc;
 import com.flip.flipmvc.Models.MarketDisc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,9 +43,14 @@ public class FlipController {
         return "redirect:";
     }
 
-//    @RequestMapping(value = "disc")
-//    public String displaySingleDisc(Model model, @RequestParam int id) {
-//
-//    }
+    @RequestMapping(value = "disc")
+    public String displaySingleDisc(Model model, @RequestParam int id) {
+
+        MarketDisc singleDisc = marketDiscDao.findOne(id);
+        model.addAttribute("disc",singleDisc);
+        model.addAttribute("title","Disc Detail");
+
+        return "flip/disc-detail";
+    }
 
 }
