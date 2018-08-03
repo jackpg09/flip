@@ -22,9 +22,8 @@
         <td th:text="${disc.name}"></td>
         <td th:text="${disc.brand}"></td>
         <td th:text="${disc.clubType}"></td>
-        <td>
-           <p>edit</p>
-        </td>
+        <td><a th:href="/flip/disc?id=${disc.id}"><p>details</p></a></td>
+        <td><p>edit</p></td>
     </tr>
 
 </table>

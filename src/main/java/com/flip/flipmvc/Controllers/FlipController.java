@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("flip")
@@ -29,7 +30,7 @@ public class FlipController {
     public String displayAddDiscForm(Model model) {
 
         model.addAttribute("title","Add Disc");
-        model.addAttribute("disc", new Disc());
+        model.addAttribute("disc", new MarketDisc());
         model.addAttribute("clubTypes", ClubType.values());
         return "flip/add";
     }
@@ -41,5 +42,10 @@ public class FlipController {
 
         return "redirect:";
     }
+
+//    @RequestMapping(value = "disc")
+//    public String displaySingleDisc(Model model, @RequestParam int id) {
+//
+//    }
 
 }
