@@ -26,5 +26,4 @@ public class SignUpForm extends LoginForm {
             verifyPassword = null;
         }
     }
-
 }

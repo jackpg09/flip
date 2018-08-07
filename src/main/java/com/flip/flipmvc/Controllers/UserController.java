@@ -23,6 +23,7 @@ public class UserController {
 
     @Autowired
     UserDao userDao;
+
     public static final String userSessionKey = "user_id";
     protected User getUserFromSession(HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
@@ -109,6 +110,6 @@ public class UserController {
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(HttpServletRequest request){
         request.getSession().invalidate();
-        return "redirect:user/login";
+        return "redirect:home";
     }
 }
