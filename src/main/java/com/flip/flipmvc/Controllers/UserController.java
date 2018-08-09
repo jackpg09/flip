@@ -40,8 +40,6 @@ public class UserController {
 
 
 
-
-
     @RequestMapping(value="home", method = RequestMethod.GET)
     public String processHomePage () {
         return "user/index";

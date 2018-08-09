@@ -27,13 +27,17 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
         // Authentication white list; add all publicly visible pages here
         List<String> nonAuthPages = Arrays.asList("/user/login", "/user/signUp", "/user/logout", "/home", "/flip", "/flip/disc");
 
+        // /"profile"
+
         // Require sign-in for auth pages
         if ( !nonAuthPages.contains(request.getRequestURI()) ) {
+
 
             Integer userId = (Integer) request.getSession().getAttribute(userSessionKey);
 
             if (userId != null) {
                 User user = userDao.findOne(userId);
+
 
                 if (user != null)
                     return true;
