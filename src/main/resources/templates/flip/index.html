@@ -8,43 +8,22 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-
-
+<p th:unless="${discs} and ${discs.size()}">no discs :(</p>
 
 <div class="row">
-    <div class="col-sm-6 col-md-4">
+    <div th:each="disc : ${discs}" class="col-sm-6 col-md-4">
         <div class="thumbnail">
-            <img src="..." alt="...">
+            <img src="http://www.gottagogottathrow.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/n/inle-17hal-st-3roc-org-temp.jpg"/>
             <div class="caption">
-                <h3>Thumbnail label</h3>
-                <p>...</p>
-                <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                <h4 th:text="${disc.brand}"></h4>
+                <h1 th:text="${disc.name}"></h1>
+                <a th:href="@{'/flip/disc?id=' + ${disc.id}}"><p>DETAILS</p></a>
+                <p><a href="#" class="btn btn-primary" role="button">Purchase</a></p>
             </div>
         </div>
     </div>
 </div>
 
-
-
-<p th:unless="${discs} and ${discs.size()}">no discs :(</p>
-
-<table class="table">
-    
-
-    <tr th:each="disc : ${discs}">
-        <td th:text="${disc.name}"></td>
-        <td th:text="${disc.brand}"></td>
-        <td th:text="${disc.clubType}"></td>
-        <td><a th:href="@{'/flip/disc?id=' + ${disc.id}}"><p>details</p></a></td>
-        <td><p>edit</p></td>
-    </tr>
-
-</table>
-
-<nav>
-    <a href="/flip/add">Add</a> |
-    <a href="/disc/remove">Remove</a>
-</nav>
 
 </body>
 </html>

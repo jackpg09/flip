@@ -8,7 +8,27 @@
 
 <h1>Welcome, <span th:text="${user.username}"></span></h1>
 
-<!--<h1 th:text="${}"></h1>-->
+<nav>
+    <a href="/flip/add">Add</a> |
+    <a href="/disc/remove">Remove</a>
+</nav>
+
+<div class="row">
+    <div th:each="disc : ${discs}" class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            <img src="http://www.gottagogottathrow.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/n/inle-17hal-st-3roc-org-temp.jpg"
+                 alt="http://www.gottagogottathrow.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/n/inle-17hal-st-3roc-org-temp.jpg" />
+            <div class="caption">
+                <h4 th:text="${disc.brand}"></h4>
+                <h1 th:text="${disc.name}"></h1>
+                <a th:href="@{'/flip/disc?id=' + ${disc.id}}"><p>DETAILS</p></a>
+                <p><a href="#" class="btn btn-primary" role="button">Purchase</a></p>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
+
+
