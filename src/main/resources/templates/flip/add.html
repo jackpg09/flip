@@ -26,6 +26,11 @@
         </select>
     </div>
     <div class="form-group">
+        <label th:for="weight">Weight</label>
+        <input class="form-control" th:field="*{weight}" />
+        <span th:errors="*{weight}" class="error"></span>
+    </div>
+    <div class="form-group">
         <label th:for="color">Color</label>
         <input class="form-control" th:field="*{color}" />
         <span th:errors="*{color}" class="error"></span>
