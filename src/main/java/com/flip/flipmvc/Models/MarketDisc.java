@@ -1,9 +1,6 @@
 package com.flip.flipmvc.Models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class MarketDisc extends Disc {
@@ -20,6 +17,9 @@ public class MarketDisc extends Disc {
     private int glide;
     private int turn;
     private int fade;
+
+    @ManyToOne
+    private User user;
 
     public MarketDisc(String color, String plastic, String description, int speed, int glide, int turn, int fade) {
         super();
@@ -99,4 +99,8 @@ public class MarketDisc extends Disc {
     public void setFade(int fade) {
         this.fade = fade;
     }
+
+    public User getUser() { return user; }
+
+    public void setUser(User user) { this.user = user; }
 }

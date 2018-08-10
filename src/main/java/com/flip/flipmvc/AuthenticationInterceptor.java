@@ -30,7 +30,8 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
         // /"profile"
 
         // Require sign-in for auth pages
-        if ( !nonAuthPages.contains(request.getRequestURI()) ) {
+
+        if ( !nonAuthPages.contains(request.getRequestURI()) ) {    // if you request and authorized page
 
 
             Integer userId = (Integer) request.getSession().getAttribute(userSessionKey);

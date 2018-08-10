@@ -1,6 +1,7 @@
 package com.flip.flipmvc.Controllers;
 
 
+import com.flip.flipmvc.Models.Data.MarketDiscDao;
 import com.flip.flipmvc.Models.Data.UserDao;
 import com.flip.flipmvc.Models.Forms.LoginForm;
 import com.flip.flipmvc.Models.Forms.SignUpForm;
@@ -24,13 +25,16 @@ public class UserController {
     @Autowired
     UserDao userDao;
 
+    @Autowired
+    MarketDiscDao marketDiscDao;
+
     public static final String userSessionKey = "user_id";
     protected User getUserFromSession(HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         return userId == null ? null : userDao.findOne(userId);
     }
     protected void setUserInSession(HttpSession session, User user) {
-        session.setAttribute(userSessionKey, user.getUserId());
+        session.setAttribute(userSessionKey, user.getId());
     }
     @ModelAttribute("user")
     public User getUserForModel(HttpServletRequest request) {
@@ -38,10 +42,14 @@ public class UserController {
     }
 
 
-
-
     @RequestMapping(value="home", method = RequestMethod.GET)
-    public String processHomePage () {
+    public String processHomePage (HttpServletRequest request, Model model) {
+
+        Integer userId = (Integer) request.getSession().getAttribute(userSessionKey);
+        User user = userDao.findOne(userId);
+
+        model.addAttribute("discs",user.getDiscs());
+
         return "user/index";
     }
 

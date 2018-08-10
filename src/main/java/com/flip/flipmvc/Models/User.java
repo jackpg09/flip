@@ -2,12 +2,11 @@ package com.flip.flipmvc.Models;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -15,8 +14,7 @@ public class User {
 
     @Id
     @GeneratedValue
-    @Column(name="user_id")
-    private int userId;
+    private int id;
 
     @NotNull
     @Pattern(regexp = "[a-zA-Z][a-zA-Z0-9_-]{4,11}", message = "Invalid username")
@@ -26,6 +24,10 @@ public class User {
     private String pwHash;
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<MarketDisc> discs = new ArrayList<>();
+
     public User() {}
 
     public User(String username, String password) {
@@ -33,9 +35,7 @@ public class User {
         this.pwHash = hashPassword(password);
     }
 
-    public int getUserId() {
-        return userId;
-    }
+    public int getId() { return id; }
 
     public String getUsername() {
         return username;
@@ -48,4 +48,6 @@ public class User {
     public boolean isMatchingPassword(String password) {
         return encoder.matches(password, pwHash);
     }
+
+    public List<MarketDisc> getDiscs() { return discs; }
 }

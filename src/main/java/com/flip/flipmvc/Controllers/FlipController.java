@@ -2,7 +2,9 @@ package com.flip.flipmvc.Controllers;
 
 import com.flip.flipmvc.Models.ClubType;
 import com.flip.flipmvc.Models.Data.MarketDiscDao;
+import com.flip.flipmvc.Models.Data.UserDao;
 import com.flip.flipmvc.Models.MarketDisc;
+import com.flip.flipmvc.Models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,12 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+
+import static com.flip.flipmvc.Controllers.UserController.userSessionKey;
+
 @Controller
 @RequestMapping("flip")
 public class FlipController {
 
     @Autowired
     MarketDiscDao marketDiscDao;
+
+    @Autowired
+    UserDao userDao;
 
     @RequestMapping(value = "")
     public String index(Model model) {
@@ -35,11 +44,13 @@ public class FlipController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String processAddDiscForm(MarketDisc newDisc, Model model) {
+    public String processAddDiscForm(MarketDisc newDisc, HttpServletRequest request, Model model) {
 
+        Integer userId = (Integer) request.getSession().getAttribute(userSessionKey);
+        User user = userDao.findOne(userId);
+        newDisc.setUser(user);
         marketDiscDao.save(newDisc);
-
-        return "redirect:";
+        return "redirect:/user/home";
     }
 
     @RequestMapping(value = "disc")

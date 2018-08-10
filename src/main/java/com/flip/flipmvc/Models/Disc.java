@@ -9,6 +9,7 @@ public class Disc {
     private String brand;
     private ClubType clubType;
 
+
     public Disc(String name, String brand) {
         this();
         this.name = name;
