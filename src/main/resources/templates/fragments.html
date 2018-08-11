@@ -21,10 +21,10 @@
         </div>
         <div>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/user/home">Profile</a></li>
-                <li><a href="/user/login">Login</a></li>
-                <li><a href="/user/signUp">Sign Up</a></li>
-                <li><a href="/user/logout">Logout</a></li>
+                <li><a th:unless="${user==null}" href="/user/home">Profile</a></li>
+                <li><a th:if="${user==null}" href="/user/login">Login</a></li>
+                <li><a th:if="${user==null}" href="/user/signUp">Sign Up</a></li>
+                <li><a th:unless="${user==null}" href="/user/logout">Logout</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div>
