@@ -59,7 +59,6 @@ public class FlipController {
         MarketDisc singleDisc = marketDiscDao.findOne(id);
         model.addAttribute("disc",singleDisc);
         model.addAttribute("title","Disc Detail");
-
         return "flip/disc-detail";
     }
 }
