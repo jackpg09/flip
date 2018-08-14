@@ -9,8 +9,7 @@
 <h1>Welcome, <span th:text="${user.username}"></span></h1>
 
 <nav>
-    <a href="/flip/add">Add</a> |
-    <a href="/disc/remove">Remove</a>
+    <h1><a href="/flip/add">Add</a></h1>
 </nav>
 
 <div class="row">
@@ -22,7 +21,6 @@
                 <h4 th:text="${disc.brand}"></h4>
                 <h1 th:text="${disc.name}"></h1>
                 <a th:href="@{'/flip/disc?id=' + ${disc.id}}"><p>DETAILS</p></a>
-                <p><a href="#" class="btn btn-primary" role="button">Purchase</a></p>
             </div>
         </div>
     </div>
