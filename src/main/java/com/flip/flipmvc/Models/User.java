@@ -33,7 +33,6 @@ public class User {
     private List<LostDisc> lostDiscs =new ArrayList<>();
 
 
-
     public User() {}
 
     public User(String username, String password) {
