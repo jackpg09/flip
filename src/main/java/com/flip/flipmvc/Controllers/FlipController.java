@@ -8,11 +8,13 @@ import com.flip.flipmvc.Models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import static com.flip.flipmvc.Controllers.UserController.userSessionKey;
 
@@ -25,6 +27,20 @@ public class FlipController {
 
     @Autowired
     UserDao userDao;
+
+    public static final String userSessionKey = "user_id";
+    protected User getUserFromSession(HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        return userId == null ? null : userDao.findOne(userId);
+    }
+    protected void setUserInSession(HttpSession session, User user) {
+        session.setAttribute(userSessionKey, user.getId());
+    }
+    @ModelAttribute("user")
+    public User getUserForModel(HttpServletRequest request) {
+        return getUserFromSession(request.getSession());
+    }
+
 
     @RequestMapping(value = "")
     public String index(Model model) {
