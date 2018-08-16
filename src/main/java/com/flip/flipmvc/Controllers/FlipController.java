@@ -46,7 +46,7 @@ public class FlipController {
     public String index(Model model) {
 
         model.addAttribute("discs", marketDiscDao.findAll());
-        model.addAttribute("title", "Discs");
+        model.addAttribute("title", "All Discs");
         return "flip/index";
     }
 

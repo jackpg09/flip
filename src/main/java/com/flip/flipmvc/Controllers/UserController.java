@@ -49,6 +49,7 @@ public class UserController {
         User user = userDao.findOne(userId);
 
         model.addAttribute("discs",user.getDiscs());
+        model.addAttribute("title", "Discs in your 'BAG'");
 
         return "user/index";
     }
