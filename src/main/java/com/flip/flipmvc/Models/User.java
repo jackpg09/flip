@@ -28,10 +28,6 @@ public class User {
     @JoinColumn(name = "user_id")
     private List<MarketDisc> discs = new ArrayList<>();
 
-    @OneToMany
-    @JoinColumn(name = "user_id")
-    private List<LostDisc> lostDiscs =new ArrayList<>();
-
 
     public User() {}
 
@@ -56,5 +52,4 @@ public class User {
 
     public List<MarketDisc> getDiscs() { return discs; }
 
-    public List<LostDisc> getLostDiscs() { return lostDiscs; }
 }
