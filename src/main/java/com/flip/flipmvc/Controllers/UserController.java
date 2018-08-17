@@ -20,26 +20,7 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("user")
-public class UserController {
-
-    @Autowired
-    UserDao userDao;
-
-    @Autowired
-    MarketDiscDao marketDiscDao;
-
-    public static final String userSessionKey = "user_id";
-    protected User getUserFromSession(HttpSession session) {
-        Integer userId = (Integer) session.getAttribute(userSessionKey);
-        return userId == null ? null : userDao.findOne(userId);
-    }
-    protected void setUserInSession(HttpSession session, User user) {
-        session.setAttribute(userSessionKey, user.getId());
-    }
-    @ModelAttribute("user")
-    public User getUserForModel(HttpServletRequest request) {
-        return getUserFromSession(request.getSession());
-    }
+public class UserController extends AbstractController {
 
 
     @RequestMapping(value="home", method = RequestMethod.GET)

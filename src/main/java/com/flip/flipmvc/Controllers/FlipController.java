@@ -8,38 +8,17 @@ import com.flip.flipmvc.Models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import static com.flip.flipmvc.Controllers.UserController.userSessionKey;
 
 @Controller
 @RequestMapping("flip")
-public class FlipController {
-
-    @Autowired
-    MarketDiscDao marketDiscDao;
-
-    @Autowired
-    UserDao userDao;
-
-    public static final String userSessionKey = "user_id";
-    protected User getUserFromSession(HttpSession session) {
-        Integer userId = (Integer) session.getAttribute(userSessionKey);
-        return userId == null ? null : userDao.findOne(userId);
-    }
-    protected void setUserInSession(HttpSession session, User user) {
-        session.setAttribute(userSessionKey, user.getId());
-    }
-    @ModelAttribute("user")
-    public User getUserForModel(HttpServletRequest request) {
-        return getUserFromSession(request.getSession());
-    }
+public class FlipController extends AbstractController {
 
 
     @RequestMapping(value = "")
@@ -76,5 +55,33 @@ public class FlipController {
         model.addAttribute("disc",singleDisc);
         model.addAttribute("title","Disc Detail");
         return "flip/disc-detail";
+    }
+
+    @RequestMapping(value = "edit/{marketDiscId}", method = RequestMethod.GET)
+    public String displayEditForm(@Valid Model model, @PathVariable int marketDiscId, ClubType club){
+        MarketDisc d = marketDiscDao.findOne(marketDiscId);
+        model.addAttribute("disc", d);
+        model.addAttribute("clubTypes",ClubType.values());
+        return "flip/edit-disc";
+    }
+
+
+    @RequestMapping(value = "edit", method = RequestMethod.POST)
+    public String processEditForm(int marketDiscId, String name, String brand, ClubType clubType, String color,
+                              String plastic, String description, int weight, int speed, int glide, int turn, int fade){
+        MarketDisc d = marketDiscDao.findOne(marketDiscId);
+        d.setName(name);
+        d.setBrand(brand);
+        d.setClubType(clubType);
+        d.setColor(color);
+        d.setPlastic(plastic);
+        d.setDescription(description);
+        d.setWeight(weight);
+        d.setSpeed(speed);
+        d.setGlide(glide);
+        d.setTurn(turn);
+        d.setFade(fade);
+
+        return "redirect:/flip";
     }
 }

@@ -1,5 +1,7 @@
 package com.flip.flipmvc.Models;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
@@ -7,6 +9,8 @@ public class Disc {
 
     private String name;
     private String brand;
+
+//    @Enumerated(EnumType.STRING)
     private ClubType clubType;
 
 

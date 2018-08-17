@@ -1,6 +1,5 @@
 package com.flip.flipmvc.Models;
 
-
 public enum ClubType {
 
     DRIVER ("Driver"),
