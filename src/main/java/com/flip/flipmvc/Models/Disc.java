@@ -1,16 +1,16 @@
 package com.flip.flipmvc.Models;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @MappedSuperclass
 public class Disc {
 
+    @NotNull
+    @Size(min=1, message="Name must not be empty.")
     private String name;
     private String brand;
-
-//    @Enumerated(EnumType.STRING)
     private ClubType clubType;
 
 

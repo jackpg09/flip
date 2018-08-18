@@ -8,6 +8,7 @@ import com.flip.flipmvc.Models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,8 +40,14 @@ public class FlipController extends AbstractController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String processAddDiscForm(MarketDisc newDisc, HttpServletRequest request, Model model) {
+    public String processAddDiscForm(@ModelAttribute @Valid MarketDisc newDisc, Errors errors, HttpServletRequest request, Model model) {
 
+        if (errors.hasErrors()){
+            model.addAttribute("title", "Add Disc");
+            model.addAttribute("clubTypes", ClubType.values());
+            model.addAttribute("disc",newDisc);
+            return "flip/add";
+        }
         Integer userId = (Integer) request.getSession().getAttribute(userSessionKey);
         User user = userDao.findOne(userId);
         newDisc.setUser(user);

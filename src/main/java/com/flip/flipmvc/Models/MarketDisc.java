@@ -1,6 +1,11 @@
 package com.flip.flipmvc.Models;
 
+
+
+import org.hibernate.validator.constraints.Range;
+
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 @Entity
 public class MarketDisc extends Disc {
@@ -12,10 +17,16 @@ public class MarketDisc extends Disc {
     private String color;
     private String plastic;
     private String description;
+
+    @NotNull @Range(min = 120, max = 180, message = "Weight must between 120 and 180 grams")
     private int weight;
+    @NotNull @Range(min = 1, max = 13, message = "Speed must be between 1 and 13")
     private int speed;
+    @NotNull @Range(min = 1, max = 7, message = "Glide must be between 1 and 7")
     private int glide;
+    @NotNull @Range(min = -5, max = 1, message = "Turn must be between -5 and 1")
     private int turn;
+    @NotNull @Range(min = 0, max = 6, message ="Fade must be between 0 and 6")
     private int fade;
 
     @ManyToOne
@@ -26,6 +37,7 @@ public class MarketDisc extends Disc {
         this.color = color;
         this.plastic = plastic;
         this.description = description;
+        this.weight = weight;
         this.speed = speed;
         this.glide = glide;
         this.turn = turn;

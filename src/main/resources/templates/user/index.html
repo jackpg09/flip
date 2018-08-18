@@ -16,7 +16,7 @@
         <div class="thumbnail">
             <img src="http://www.gottagogottathrow.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/n/inle-17hal-st-3roc-org-temp.jpg" />
             <div class="caption">
-                <h5 th:text="${disc.brand}"></h5>
+                <h3 th:text="${disc.brand}"></h3>
                 <h2 th:text="${disc.name}"></h2>
                     <a th:href="@{'/flip/disc?id=' + ${disc.id}}" type="button" class="btn btn-info">DETAILS</a>
                     <a th:href="@{'/flip/edit/' + ${disc.id}}" type="button" class="btn btn-warning">EDIT</a>
