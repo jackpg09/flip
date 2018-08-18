@@ -30,7 +30,7 @@ public class UserController extends AbstractController {
         User user = userDao.findOne(userId);
 
         model.addAttribute("discs",user.getDiscs());
-        model.addAttribute("title", "Discs in your 'BAG'");
+        model.addAttribute("title", "Personal Inventory");
 
         return "user/index";
     }

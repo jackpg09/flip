@@ -7,3 +7,12 @@ h1,label,h4,th,td{
    color: white;
 }
 
+p.controls{
+    font-family: bold, fantasy;
+    font-size: large;
+    font-color: Blue;
+}
+
+a.navText{
+    font-size: x-large;
+}

@@ -15,7 +15,7 @@
 <nav th:fragment="navigation" class="navbar fixed-top navbar-inverse">
     <div class="container-fluid">
         <ul class="nav navbar-nav navbar-left">
-            <li><a class="navbar-brand" href="/flip">FLIP</a></li>
+            <li><a class="navbar-brand navText" href="/flip">FLIP</a></li>
             <li>
                 <form class="form-inline">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
@@ -24,10 +24,10 @@
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a th:unless="${user==null}" href="/user/home">Profile</a></li>
-            <li><a th:if="${user==null}" href="/user/login">Login</a></li>
-            <li><a th:if="${user==null}" href="/user/signUp">Sign Up</a></li>
-            <li><a th:unless="${user==null}" href="/user/logout">Logout</a></li>
+            <li><a th:unless="${user==null}" href="/user/home" class="navText" th:text="${user.username}">Profile</a></li>
+            <li><a th:if="${user==null}" href="/user/login" class="navText">Login</a></li>
+            <li><a th:if="${user==null}" href="/user/signUp" class="navText">Sign Up</a></li>
+            <li><a th:unless="${user==null}" href="/user/logout" class="navText">Logout</a></li>
         </ul>
     </div>
 </nav>

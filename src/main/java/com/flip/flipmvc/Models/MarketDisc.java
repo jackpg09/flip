@@ -21,7 +21,7 @@ public class MarketDisc extends Disc {
     @ManyToOne
     private User user;
 
-    public MarketDisc(String color, String plastic, String description, int speed, int glide, int turn, int fade) {
+    public MarketDisc(String color, String plastic, String description, int weight, int speed, int glide, int turn, int fade) {
         super();
         this.color = color;
         this.plastic = plastic;
