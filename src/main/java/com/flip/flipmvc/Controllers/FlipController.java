@@ -3,6 +3,7 @@ package com.flip.flipmvc.Controllers;
 import com.flip.flipmvc.Models.ClubType;
 import com.flip.flipmvc.Models.Data.MarketDiscDao;
 import com.flip.flipmvc.Models.Data.UserDao;
+import com.flip.flipmvc.Models.Forms.SearchForm;
 import com.flip.flipmvc.Models.MarketDisc;
 import com.flip.flipmvc.Models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import java.util.ArrayList;
+
 import static com.flip.flipmvc.Controllers.UserController.userSessionKey;
 
 @Controller
@@ -23,11 +26,29 @@ public class FlipController extends AbstractController {
 
 
     @RequestMapping(value = "")
-    public String index(Model model) {
-
+    public String search(Model model) {
+        model.addAttribute("searchForm", new SearchForm());
         model.addAttribute("discs", marketDiscDao.findAll());
         model.addAttribute("title", "All Discs");
+
         return "flip/index";
+    }
+
+
+    @RequestMapping(value="", method = RequestMethod.GET)
+    public String search(Model model, @ModelAttribute("searchForm") SearchForm searchForm) {
+
+        ArrayList<MarketDisc> matchingDiscs = new ArrayList<>();
+
+        for (MarketDisc disc : marketDiscDao.findAll()) {
+            if (disc.getName().toLowerCase().contains(searchForm.getKeyword().toLowerCase())){
+                matchingDiscs.add(disc);
+                model.addAttribute("discs", matchingDiscs);
+
+                return "flip/index";
+            }
+        }
+        return "redirect:";
     }
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
