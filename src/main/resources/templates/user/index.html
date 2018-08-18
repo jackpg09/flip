@@ -18,8 +18,8 @@
             <div class="caption">
                 <h5 th:text="${disc.brand}"></h5>
                 <h2 th:text="${disc.name}"></h2>
-                    <a th:href="@{'/flip/disc?id=' + ${disc.id}}" type="button" class="btn btn-info"><p class="controls">DETAILS</p></a>
-                    <a th:href="@{'/flip/edit/' + ${disc.id}}" type="button" class="btn btn-warning"><p class="controls">EDIT</p></a>
+                    <a th:href="@{'/flip/disc?id=' + ${disc.id}}" type="button" class="btn btn-info">DETAILS</a>
+                    <a th:href="@{'/flip/edit/' + ${disc.id}}" type="button" class="btn btn-warning">EDIT</a>
             </div>
         </div>
     </div>
