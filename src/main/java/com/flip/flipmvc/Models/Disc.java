@@ -10,7 +10,10 @@ public class Disc {
     @NotNull
     @Size(min=1, message="Name must not be empty.")
     private String name;
+    @NotNull
+    @Size(min=1, message="Brand must not be empty.")
     private String brand;
+
     private ClubType clubType;
 
 

@@ -40,7 +40,7 @@ public class FlipController extends AbstractController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String processAddDiscForm(@ModelAttribute @Valid MarketDisc newDisc, Errors errors, HttpServletRequest request, Model model) {
+    public String processAddDiscForm(@ModelAttribute("disc") @Valid MarketDisc newDisc, Errors errors, HttpServletRequest request, Model model) {
 
         if (errors.hasErrors()){
             model.addAttribute("title", "Add Disc");
