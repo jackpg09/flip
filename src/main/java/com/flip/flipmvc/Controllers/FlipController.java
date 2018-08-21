@@ -87,6 +87,7 @@ public class FlipController extends AbstractController {
 
     @RequestMapping(value = "edit/{marketDiscId}", method = RequestMethod.GET)
     public String displayEditForm(Model model, @PathVariable int marketDiscId){
+        model.addAttribute("searchForm", new SearchForm());
 
         MarketDisc d = marketDiscDao.findOne(marketDiscId);
         model.addAttribute("disc", d);
@@ -97,16 +98,17 @@ public class FlipController extends AbstractController {
 
 
     @RequestMapping(value = "edit", method = RequestMethod.POST)
-    public String processEditForm(@ModelAttribute("disc") @Valid MarketDisc editedDisc, Errors errors, Model model, int marketDiscId, String name, String brand, ClubType clubType, String color,
+    public String processEditForm(@ModelAttribute("disc") @Valid MarketDisc editedDisc, Errors errors, Model model,
+                                  int marketDiscId, String name, String brand, ClubType clubType, String color,
                               String plastic, String description, int weight, int speed, int glide, int turn, int fade){
         if(errors.hasErrors()){
             model.addAttribute("title", "Edit Disc");
             model.addAttribute("clubTypes",ClubType.values());
             model.addAttribute("disc", editedDisc);
+            model.addAttribute("searchForm", new SearchForm());
 
             return "flip/edit-disc";
         }
-        marketDiscDao.findOne(marketDiscId);
         MarketDisc d = marketDiscDao.findOne(marketDiscId);
         d.setName(name);
         d.setBrand(brand);
@@ -122,6 +124,7 @@ public class FlipController extends AbstractController {
 
         marketDiscDao.save(d);
         model.addAttribute("disc", d);
+        model.addAttribute("searchForm", new SearchForm());
 
         return "flip/disc-detail";
     }
