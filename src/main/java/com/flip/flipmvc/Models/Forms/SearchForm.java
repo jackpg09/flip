@@ -1,8 +1,11 @@
 package com.flip.flipmvc.Models.Forms;
 
+import javax.validation.constraints.NotNull;
+
 public class SearchForm {
 
-    private String keyword = "Search";
+    @NotNull
+    private String keyword;
 
     public SearchForm(){}
 

@@ -4,6 +4,7 @@ package com.flip.flipmvc.Controllers;
 import com.flip.flipmvc.Models.Data.MarketDiscDao;
 import com.flip.flipmvc.Models.Data.UserDao;
 import com.flip.flipmvc.Models.Forms.LoginForm;
+import com.flip.flipmvc.Models.Forms.SearchForm;
 import com.flip.flipmvc.Models.Forms.SignUpForm;
 import com.flip.flipmvc.Models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class UserController extends AbstractController {
     @RequestMapping(value="home", method = RequestMethod.GET)
     public String processHomePage (HttpServletRequest request, Model model) {
 
+        model.addAttribute("searchForm", new SearchForm());
+
+
         Integer userId = (Integer) request.getSession().getAttribute(userSessionKey);
         User user = userDao.findOne(userId);
 
@@ -37,6 +41,7 @@ public class UserController extends AbstractController {
 
     @RequestMapping(value = "/signUp")
     public String registerForm(Model model) {
+        model.addAttribute("searchForm", new SearchForm());
         model.addAttribute(new SignUpForm());
         model.addAttribute("title", "Register");
         return "user/signup";
@@ -65,6 +70,8 @@ public class UserController extends AbstractController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model) {
+
+        model.addAttribute("searchForm", new SearchForm());
         model.addAttribute(new LoginForm());
         model.addAttribute("title", "Log In");
         return "user/login";
