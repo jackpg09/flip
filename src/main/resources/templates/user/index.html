@@ -8,11 +8,11 @@
 <nav th:replace="fragments :: navigation"></nav>
 
 <nav>
-    <h1><a href="/flip/add">Add Disc</a></h1>
+    <h1><a type="button" class="btn btn-primary btn-lg btn-block" href="/flip/add">Add Disc</a></h1>
 </nav>
 
 <div class="row">
-    <div th:each="disc : ${discs}" class="col-sm-6 col-md-4">
+    <div th:each="disc : ${discs}" class="col-sm-5 col-md-3">
         <div class="thumbnail">
             <img src="http://www.gottagogottathrow.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/n/inle-17hal-st-3roc-org-temp.jpg" />
             <div class="caption">
@@ -20,6 +20,7 @@
                 <h2 th:text="${disc.name}"></h2>
                     <a th:href="@{'/flip/disc?id=' + ${disc.id}}" type="button" class="btn btn-info">DETAILS</a>
                     <a th:href="@{'/flip/edit/' + ${disc.id}}" type="button" class="btn btn-warning">EDIT</a>
+                    <a type="button" class="btn btn-danger">DELETE</a>
             </div>
         </div>
     </div>
