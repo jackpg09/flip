@@ -7,14 +7,14 @@ public enum ClubType {
     MID_RANGE ("Mid-Range"),
     PUTTER ("Putter");
 
-    private final String name;
+    private final String clubName;
 
-    ClubType(String name) {
-        this.name = name;
+    ClubType(String clubName) {
+        this.clubName = clubName;
     }
 
-    public String getName() {
-        return name;
+    public String getClubName() {
+        return clubName;
     }
 
 }

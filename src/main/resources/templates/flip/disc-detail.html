@@ -23,7 +23,7 @@
                     </tr>
                     <tr>
                         <th>Club Type</th>
-                        <td th:text="*{clubType}"></td>
+                        <td th:text="*{clubType.clubName}"></td>
                     </tr>
                     <tr>
                         <th>Weight</th>
@@ -43,19 +43,19 @@
                     </tr>
                     <tr>
                         <th>Speed</th>
-                        <td th:text="*{speed}"></td>
+                        <td th:text="*{speed.value}"></td>
                     </tr>
                     <tr>
                         <th>Glide</th>
-                        <td th:text="*{glide}"></td>
+                        <td th:text="*{glide.value}"></td>
                     </tr>
                     <tr>
                         <th>Turn</th>
-                        <td th:text="*{turn}"></td>
+                        <td th:text="*{turn.value}"></td>
                     </tr>
                     <tr>
                         <th>Fade</th>
-                        <td th:text="*{fade}"></td>
+                        <td th:text="*{fade.value}"></td>
                     </tr>
                 </table>
             </div>

@@ -18,21 +18,19 @@ public class MarketDisc extends Disc {
     private String plastic;
     private String description;
 
-    @NotNull @Range(min = 120, max = 180, message = "Weight must between 120 and 180 grams")
+    @NotNull @Range(min = 120, max = 180, message = "Regulation is between 120 and 180 grams")
     private int weight;
-    @NotNull @Range(min = 1, max = 13, message = "Speed must be between 1 and 13")
-    private int speed;
-    @NotNull @Range(min = 1, max = 7, message = "Glide must be between 1 and 7")
-    private int glide;
-    @NotNull @Range(min = -5, max = 1, message = "Turn must be between -5 and 1")
-    private int turn;
-    @NotNull @Range(min = 0, max = 6, message ="Fade must be between 0 and 6")
-    private int fade;
+
+    private Speed speed;
+    private Glide glide;
+    private Turn turn;
+    private Fade fade;
 
     @ManyToOne
     private User user;
 
-    public MarketDisc(String color, String plastic, String description, int weight, int speed, int glide, int turn, int fade) {
+    public MarketDisc(String color, String plastic, String description, int weight,
+                      Speed speed, Glide glide, Turn turn, Fade fade) {
         super();
         this.color = color;
         this.plastic = plastic;
@@ -80,35 +78,35 @@ public class MarketDisc extends Disc {
 
     public void setWeight(int weight) { this.weight = weight; }
 
-    public int getSpeed() {
+    public Speed getSpeed() {
         return speed;
     }
 
-    public void setSpeed(int speed) {
+    public void setSpeed(Speed speed) {
         this.speed = speed;
     }
 
-    public int getGlide() {
+    public Glide getGlide() {
         return glide;
     }
 
-    public void setGlide(int glide) {
+    public void setGlide(Glide glide) {
         this.glide = glide;
     }
 
-    public int getTurn() {
+    public Turn getTurn() {
         return turn;
     }
 
-    public void setTurn(int turn) {
+    public void setTurn(Turn turn) {
         this.turn = turn;
     }
 
-    public int getFade() {
+    public Fade getFade() {
         return fade;
     }
 
-    public void setFade(int fade) {
+    public void setFade(Fade fade) {
         this.fade = fade;
     }
 
