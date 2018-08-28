@@ -94,8 +94,8 @@ public class FlipController extends AbstractController {
         MarketDisc d = marketDiscDao.findOne(id);
         model.addAttribute("title","Edit Disc");
         model.addAttribute("disc", d);
-        model.addAttribute("speeds", Speed.values());
         model.addAttribute("clubTypes",ClubType.values());
+        model.addAttribute("speeds", Speed.values());
         model.addAttribute("glides",Glide.values());
         model.addAttribute("turns",Turn.values());
         model.addAttribute("fades",Fade.values());
@@ -107,16 +107,17 @@ public class FlipController extends AbstractController {
                                   String color, String plastic, String description, int weight, Speed speed, Glide glide,
                                   Turn turn, Fade fade){
         if(errors.hasErrors()){
+            model.addAttribute("searchForm", new SearchForm());
             model.addAttribute("title", "Edit Disc");
+            model.addAttribute("clubTypes",ClubType.values());
             model.addAttribute("speeds", Speed.values());
             model.addAttribute("glides",Glide.values());
             model.addAttribute("turns",Turn.values());
             model.addAttribute("fades",Fade.values());
-            model.addAttribute("clubTypes",ClubType.values());
             model.addAttribute("disc", editedDisc);
-            model.addAttribute("searchForm", new SearchForm());
             return "flip/edit-disc";
         }
+
         MarketDisc d = marketDiscDao.findOne(marketDiscId);
         d.setName(name);
         d.setBrand(brand);
