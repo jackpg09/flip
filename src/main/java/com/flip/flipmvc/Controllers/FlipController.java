@@ -21,25 +21,6 @@ public class FlipController extends AbstractController {
         return "flip/index";
     }
 
-    @RequestMapping(value="results", method = RequestMethod.GET)
-    public String search(Model model, @ModelAttribute SearchForm searchForm) {
-
-        model.addAttribute("searchForm", new SearchForm());
-
-        String k = searchForm.getKeyword().toLowerCase();
-        ArrayList<MarketDisc> matchingDiscs = new ArrayList<>();
-
-        for (MarketDisc disc : marketDiscDao.findAll()) {
-            if (disc.getPlastic().toLowerCase().contains(k) || disc.getDescription().toLowerCase().contains(k) ||
-                    disc.getColor().toLowerCase().contains(k) || disc.getBrand().toLowerCase().contains(k) ||
-                    disc.getName().toLowerCase().contains(k)) {
-                matchingDiscs.add(disc);
-            }
-            model.addAttribute("discs", matchingDiscs);
-        }
-        return "flip/index";
-    }
-
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddDiscForm(Model model) {
@@ -57,7 +38,6 @@ public class FlipController extends AbstractController {
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String processAddDiscForm(@ModelAttribute("disc") @Valid MarketDisc newDisc, Errors errors,
                                      HttpServletRequest request, Model model) {
-
         if (errors.hasErrors()){
             model.addAttribute("searchForm", new SearchForm());
             model.addAttribute("title", "Add Disc");
