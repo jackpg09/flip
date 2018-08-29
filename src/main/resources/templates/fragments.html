@@ -16,7 +16,7 @@
         <ul class="nav navbar-nav navbar-left">
             <li><a class="navbar-brand navText" href="/flip">FLIP</a></li>
             <li>
-                <form class="form-inline" th:object="${searchForm}" action="/flip/results" method="get">
+                <form class="form-inline" th:object="${searchForm}" action="/search/results" method="get">
                     <input th:field="*{keyword}" class="form-control mr-sm-2 w3-margin-top" type="search" placeholder="Search" aria-label="Search" />
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>

@@ -78,7 +78,7 @@ public class UserController extends AbstractController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@ModelAttribute @Valid LoginForm form, Errors errors, HttpServletRequest request) {
+    public String login(@ModelAttribute("loginForm") @Valid LoginForm form, Errors errors, HttpServletRequest request) {
 
         if (errors.hasErrors()) {
             return "user/login";
