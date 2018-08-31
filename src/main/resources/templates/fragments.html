@@ -4,29 +4,44 @@
     <meta charset="UTF-8"/>
     <title th:text="${title}">Default Title</title>
 
-    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
-    <link th:href="@{/css/special.css}" rel="stylesheet" />
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/special.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/normalize.css}" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+
 </head>
 
 <body>
 
-<nav th:fragment="navigation" class="navbar fixed-top navbar-inverse">
+<nav th:fragment="navigation" class="navbar navbar-inverse">
     <div class="container-fluid">
-        <ul class="nav navbar-nav navbar-left">
-            <li><a class="navbar-brand navText" href="/flip">FLIP</a></li>
-            <li>
-                <form class="form-inline" th:object="${searchForm}" action="/search/results" method="get">
-                    <input th:field="*{keyword}" class="form-control mr-sm-2 w3-margin-top" type="search" placeholder="Search" aria-label="Search" />
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/flip">FLIP</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="/flip" >Club Types <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/list/drivers">Drivers</a></li>
+                    <li><a href="/list/fairway-drivers">Fairway Drivers</a></li>
+                    <li><a href="/list/mid-ranges">Mid-Ranges</a></li>
+                    <li><a href="/list/putters">Putters</a></li>
+                </ul>
             </li>
         </ul>
+        <form class="navbar-form navbar-left" action="/search/results" th:object="${searchForm}">
+            <div class="form-group">
+                <input th:field="*{keyword}" class="form-control"
+                       type="search" placeholder="Search" aria-label="Search" />
+            </div>
+            <button type="submit" class="btn btn-outline-success">Go</button>
+        </form>
         <ul class="nav navbar-nav navbar-right">
             <li><a th:unless="${user==null}" href="/user/home" class="navText" th:text="${user.username}">Profile</a></li>
+            <li><a th:unless="${user==null}" href="/user/logout" class="navText">Logout</a></li>
+
             <li><a th:if="${user==null}" href="/user/login" class="navText">Login</a></li>
             <li><a th:if="${user==null}" href="/user/signUp" class="navText">Sign Up</a></li>
-            <li><a th:unless="${user==null}" href="/user/logout" class="navText">Logout</a></li>
         </ul>
     </div>
 </nav>

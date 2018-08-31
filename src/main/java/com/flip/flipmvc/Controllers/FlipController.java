@@ -67,7 +67,6 @@ public class FlipController extends AbstractController {
     }
 
 
-
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String displayEditForm(Model model, @PathVariable int id){
         model.addAttribute("searchForm", new SearchForm());
