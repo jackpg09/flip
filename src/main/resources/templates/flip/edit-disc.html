@@ -17,6 +17,7 @@
         <input class="form-control" th:field="*{name}" th:value="*{name}" />
         <span th:errors="*{name}" style="color:red" class="error"></span>
     </div>
+
     <div class="form-group">
         <label th:for="clubType">Club Type</label>
         <select th:field="*{clubType}" th:value="*{clubType}">
@@ -33,7 +34,6 @@
                     th:value="${speed}"></option>
         </select>
     </div>
-
 
     <div class="form-group">
         <label th:for="glide">Glide</label>
@@ -82,8 +82,7 @@
         <span th:errors="*{description}" style="color:red" class="error"></span>
     </div>
 
-
-    <input type="hidden" th:value="*{id}" name="marketDiscId" />
+    <input type="hidden" th:value="*{id}" name="id" />
     <input type="submit" value="Submit Edit" />
 </form>
 
