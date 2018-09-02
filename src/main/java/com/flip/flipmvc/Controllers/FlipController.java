@@ -64,6 +64,12 @@ public class FlipController extends AbstractController {
         marketDiscDao.save(newDisc);
         return "redirect:/user/home";
     }
+    @RequestMapping(value = "remove", method = RequestMethod.GET)
+    public String removeDisc(@RequestParam int id){
+
+        marketDiscDao.delete(id);
+        return "redirect:/user/home";
+    }
 
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
