@@ -7,7 +7,6 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.ArrayList;
 
 @Controller
 @RequestMapping("flip")
@@ -67,8 +66,8 @@ public class FlipController extends AbstractController {
     }
 
 
-    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public String displayEditForm(Model model, @PathVariable int id){
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+    public String displayEditForm(Model model, @RequestParam int id){
         model.addAttribute("searchForm", new SearchForm());
 
         MarketDisc d = marketDiscDao.findOne(id);
@@ -81,24 +80,24 @@ public class FlipController extends AbstractController {
         model.addAttribute("fades",Fade.values());
         return "flip/edit-disc";
     }
-    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-    public String processEditForm(@ModelAttribute("disc") @Valid MarketDisc editedDisc, @PathVariable int id,
-                                  Errors errors, Model model, String name, String brand,
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String processEditForm(@ModelAttribute("disc") @Valid MarketDisc editedDisc,
+                                  Errors errors, Model model, int marketDiscId, String name, String brand,
                                   ClubType clubType, String color, String plastic, String description, int weight,
                                   Speed speed, Glide glide, Turn turn, Fade fade){
         if(errors.hasErrors()){
-            model.addAttribute("searchForm", new SearchForm());
-            model.addAttribute("title", "Edit Disc");
-            model.addAttribute("clubTypes",ClubType.values());
-            model.addAttribute("speeds", Speed.values());
-            model.addAttribute("glides",Glide.values());
-            model.addAttribute("turns",Turn.values());
-            model.addAttribute("fades",Fade.values());
-            model.addAttribute("disc", editedDisc);
-            model.addAttribute("id", id);
-            return "flip/edit-disc";
+//            model.addAttribute("searchForm", new SearchForm());
+//            model.addAttribute("title", "Edit Disc");
+//            model.addAttribute("clubTypes",ClubType.values());
+//            model.addAttribute("speeds", Speed.values());
+//            model.addAttribute("glides",Glide.values());
+//            model.addAttribute("turns",Turn.values());
+//            model.addAttribute("fades",Fade.values());
+//            model.addAttribute("disc", editedDisc);
+//            model.addAttribute("id", marketDiscId);
+            return "redirect:/flip/edit?id="+ marketDiscId;
         }
-        MarketDisc d = marketDiscDao.findOne(id);
+        MarketDisc d = marketDiscDao.findOne(marketDiscId);
         d.setName(name);
         d.setBrand(brand);
         d.setClubType(clubType);

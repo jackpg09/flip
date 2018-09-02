@@ -7,82 +7,86 @@
 <nav th:replace="fragments :: navigation"></nav>
 
 <form method="post" style="max-width:600px;" th:object="${disc}" action="/flip/edit">
-    <div class="form-group">
-        <label th:for="brand">Brand</label>
-        <input class="form-control" th:field="*{brand}" th:value="*{brand}"/>
-        <span th:errors="*{brand}" style="color:red" class="error"></span>
-    </div>
-    <div class="form-group">
-        <label th:for="name">Name</label>
-        <input class="form-control" th:field="*{name}" th:value="*{name}" />
-        <span th:errors="*{name}" style="color:red" class="error"></span>
-    </div>
-
-    <div class="form-group">
-        <label th:for="clubType">Club Type</label>
-        <select th:field="*{clubType}" th:value="*{clubType}">
-            <option th:each="clubType : ${clubTypes}"
-                    th:text="${clubType.clubName}"
-                    th:value="${clubType}"></option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label th:for="speed">Speed</label>
-        <select th:field="*{speed}" th:value="*{speed}">
-            <option th:each="speed : ${speeds}"
-                    th:text="${speed.value}"
-                    th:value="${speed}"></option>
-        </select>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label th:for="brand">Brand</label>
+            <input class="form-control" th:field="*{brand}" />
+            <span th:errors="*{brand}" style="color:red" class="error"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label th:for="name">Name</label>
+            <input class="form-control" th:field="*{name}" />
+            <span th:errors="*{name}" style="color:red" class="error"></span>
+        </div>
     </div>
 
-    <div class="form-group">
-        <label th:for="glide">Glide</label>
-        <select th:field="*{glide}" th:value="*{glide}">
-            <option th:each="glide : ${glides}"
-                    th:text="${glide.value}"
-                    th:value="${glide}"></option>
-        </select>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label th:for="clubType">Club Type</label>
+            <select th:field="*{clubType}" class="form-control">
+                <option th:each="clubType : ${clubTypes}"
+                        th:text="${clubType.clubName}"
+                        th:value="${clubType}"></option>
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+            <label th:for="speed">Speed</label>
+            <select th:field="*{speed}" class="form-control">
+                <option th:each="speed : ${speeds}"
+                        th:text="${speed.value}"
+                        th:value="${speed}"></option>
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+            <label th:for="glide">Glide</label>
+            <select th:field="*{glide}" class="form-control">
+                <option th:each="glide : ${glides}"
+                        th:text="${glide.value}"
+                        th:value="${glide}">Choose...</option>
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+            <label th:for="turn">Turn</label>
+            <select th:field="*{turn}" class="form-control">
+                <option th:each="turn : ${turns}"
+                        th:text="${turn.value}"
+                        th:value="${turn}"></option>
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+            <label th:for="fade">Fade</label>
+            <select th:field="*{fade}" class="form-control">
+                <option th:each="fade : ${fades}"
+                        th:text="${fade.value}"
+                        th:value="${fade}"></option>
+            </select>
+        </div>
     </div>
-    <div class="form-group">
-        <label th:for="turn">Turn</label>
-        <select th:field="*{turn}" th:value="*{turn}">
-            <option th:each="turn : ${turns}"
-                    th:text="${turn.value}"
-                    th:value="${turn}"></option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label th:for="fade">Fade</label>
-        <select th:field="*{fade}" th:value="*{fade}">
-            <option th:each="fade : ${fades}"
-                    th:text="${fade.value}"
-                    th:value="${fade}"></option>
-        </select>
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label th:for="weight">Weight</label>
+            <input class="form-control" th:field="*{weight}" />
+            <span th:errors="*{weight}" style="color:red" class="error"></span>
+        </div>
+        <div class="form-group col-md-5">
+            <label th:for="color">Color</label>
+            <input class="form-control" th:field="*{color}" />
+            <span th:errors="*{color}" style="color:red" class="error"></span>
+        </div>
+        <div class="form-group col-md-5">
+            <label th:for="plastic">Plastic</label>
+            <input class="form-control" th:field="*{plastic}" />
+            <span th:errors="*{plastic}" style="color:red" class="error"></span>
+        </div>
     </div>
 
-
-    <div class="form-group">
-        <label th:for="weight">Weight</label>
-        <input class="form-control" th:field="*{weight}" th:value="*{weight}"/>
-        <span th:errors="*{weight}" style="color:red" class="error"></span>
-    </div>
-    <div class="form-group">
-        <label th:for="color">Color</label>
-        <input class="form-control" th:field="*{color}" th:value="*{color}" />
-        <span th:errors="*{color}" style="color:red" class="error"></span>
-    </div>
-    <div class="form-group">
-        <label th:for="plastic">Plastic</label>
-        <input class="form-control" th:field="*{plastic}" th:value="*{plastic}"/>
-        <span th:errors="*{plastic}" style="color:red" class="error"></span>
-    </div>
     <div class="form-group">
         <label th:for="description">Description</label>
-        <input class="form-control" th:field="*{description}" th:value="*{description}"/>
+        <input class="form-control" th:field="*{description}" />
         <span th:errors="*{description}" style="color:red" class="error"></span>
     </div>
 
-    <input type="hidden" th:value="*{id}" name="id" />
+    <input type="hidden" th:value="*{id}" name="marketDiscId" />
     <input type="submit" value="Submit Edit" />
 </form>
 

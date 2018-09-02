@@ -19,7 +19,7 @@
                 <h3 th:text="${disc.brand}"></h3>
                 <h2 th:text="${disc.name}"></h2>
                     <a th:href="@{'/flip/disc?id=' + ${disc.id}}" type="button" class="btn btn-info">DETAILS</a>
-                    <a th:href="@{'/flip/edit/'+ ${disc.id}}" type="button" class="btn btn-warning">EDIT</a>
+                    <a th:href="@{'/flip/edit?id='+ ${disc.id}}" type="button" class="btn btn-warning">EDIT</a>
                     <a type="button" class="btn btn-danger">DELETE</a>
             </div>
         </div>
