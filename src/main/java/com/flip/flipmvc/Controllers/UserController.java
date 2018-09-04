@@ -1,13 +1,10 @@
 package com.flip.flipmvc.Controllers;
 
 
-import com.flip.flipmvc.Models.Data.MarketDiscDao;
-import com.flip.flipmvc.Models.Data.UserDao;
 import com.flip.flipmvc.Models.Forms.LoginForm;
 import com.flip.flipmvc.Models.Forms.SearchForm;
 import com.flip.flipmvc.Models.Forms.SignUpForm;
 import com.flip.flipmvc.Models.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -16,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller

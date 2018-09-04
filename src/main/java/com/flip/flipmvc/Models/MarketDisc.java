@@ -6,19 +6,22 @@ import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.math.BigDecimal;
+
 
 @Entity
 public class MarketDisc extends Disc {
 
     @Id
     @GeneratedValue
-    @Column(name="disc_id")
+    @Column(name = "disc_id")
     private int id;
     private String color;
     private String plastic;
     private String description;
 
-    @NotNull @Range(min = 120, max = 180, message = "Regulation is between 120 and 180 grams")
+    @NotNull
+    @Range(min = 120, max = 180, message = "Regulation is between 120 and 180 grams")
     private int weight;
 
     private Speed speed;
@@ -28,6 +31,14 @@ public class MarketDisc extends Disc {
 
     @ManyToOne
     private User user;
+
+    @Column(name = "price", nullable = false)
+    @DecimalMin(value = "0.00", message = "*Price has to be non negative number")
+    private BigDecimal price;
+
+//    @Column(name="disc_image")
+//    private byte[] image;
+
 
     public MarketDisc(String color, String plastic, String description, int weight,
                       Speed speed, Glide glide, Turn turn, Fade fade) {
@@ -113,4 +124,12 @@ public class MarketDisc extends Disc {
     public User getUser() { return user; }
 
     public void setUser(User user) { this.user = user; }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
 }
