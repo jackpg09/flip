@@ -9,6 +9,10 @@
 
     <nav th:replace="fragments :: navigation"></nav>
 
+    <nav>
+        <h1><a type="button" class="btn btn-primary btn-lg btn-block" href="#">Checkout</a></h1>
+    </nav>
+
         <div class="row">
             <div th:each="disc : ${discs}" class="col-sm-5 col-md-3">
                 <div class="thumbnail">
@@ -17,8 +21,7 @@
                         <h3 th:text="${disc.brand}"></h3>
                         <h2 th:text="${disc.name}"></h2>
                         <a th:href="@{'/flip/disc?id=' + ${disc.id}}" type="button" class="btn btn-info">DETAILS</a>
-                        <a th:href="@{'/flip/edit?id='+ ${disc.id}}" type="button" class="btn btn-warning">EDIT</a>
-                        <a th:href="@{'/flip/remove?id='+ ${disc.id}}" type="button" class="btn btn-danger">DELETE</a>
+                        <a th:href="@{'/shoppingCart/remove/'+ ${disc.id}}" type="button" class="btn btn-danger">REMOVE</a>
                     </div>
                 </div>
             </div>
