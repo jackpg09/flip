@@ -17,6 +17,3 @@ a.navText{
     font-size: x-large;
 }
 
-.dropdown > .dropdown-menu {
-  display: none; //hides .dropdown-menu directly inside .dropdown
-}
