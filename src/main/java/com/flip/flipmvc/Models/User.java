@@ -28,6 +28,10 @@ public class User {
     @JoinColumn(name = "user_id")
     private List<MarketDisc> discs = new ArrayList<>();
 
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<MarketDisc> discsInCart = new ArrayList<>();
+
 
     public User() {}
 

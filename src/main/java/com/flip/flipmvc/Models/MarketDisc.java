@@ -29,6 +29,9 @@ public class MarketDisc extends Disc {
     @ManyToOne
     private User user;
 
+//    @ManyToOne
+//    private ShoppingCart discsInCart;
+
     public MarketDisc(String color, String plastic, String description, int weight,
                       Speed speed, Glide glide, Turn turn, Fade fade) {
         super();
