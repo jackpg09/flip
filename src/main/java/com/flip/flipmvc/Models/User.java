@@ -28,9 +28,9 @@ public class User {
     @JoinColumn(name = "user_id")
     private List<MarketDisc> discs = new ArrayList<>();
 
-    @OneToMany
-    @JoinColumn(name = "user_id")
-    private List<MarketDisc> discsInCart = new ArrayList<>();
+    @ManyToMany
+    private List<MarketDisc> cartDisc = new ArrayList<>();
+
 
 
     public User() {}
@@ -56,4 +56,7 @@ public class User {
 
     public List<MarketDisc> getDiscs() { return discs; }
 
+    public List<MarketDisc> getCartDiscs() { return cartDisc; }
+
+    public void addCartDisc(MarketDisc disc) {cartDisc.add(disc);}
 }
