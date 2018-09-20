@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.List;
 
 
 @Entity
@@ -28,6 +29,9 @@ public class MarketDisc extends Disc {
 
     @ManyToOne
     private User user;
+
+    @ManyToMany(mappedBy = "cartDisc")
+    private List<User> usersCart;
 
     public MarketDisc(String color, String plastic, String description, int weight,
                       Speed speed, Glide glide, Turn turn, Fade fade) {

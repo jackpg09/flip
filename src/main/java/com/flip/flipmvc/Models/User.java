@@ -28,6 +28,10 @@ public class User {
     @JoinColumn(name = "user_id")
     private List<MarketDisc> discs = new ArrayList<>();
 
+    @ManyToMany
+    private List<MarketDisc> cartDisc = new ArrayList<>();
+
+
 
     public User() {}
 
@@ -52,4 +56,9 @@ public class User {
 
     public List<MarketDisc> getDiscs() { return discs; }
 
+    public List<MarketDisc> getCartDiscs() { return cartDisc; }
+
+    public void addCartDisc(MarketDisc disc) {cartDisc.add(disc);}
+
+    public void removeCartDisc(MarketDisc disc) {cartDisc.remove(disc);}
 }
