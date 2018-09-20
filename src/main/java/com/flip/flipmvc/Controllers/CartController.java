@@ -49,9 +49,16 @@ public class CartController extends AbstractController {
 
 
     @RequestMapping(value="remove/{discId}", method = RequestMethod.GET)
-    public String removeDiscFromCart(@PathVariable("discId") int discId) {
+    public String removeDiscFromCart(@PathVariable("discId") int discId, HttpServletRequest request) {
 
-//        ShoppingCart.removeDiscFromCart(marketDiscDao.findOne(discId));
+        MarketDisc oldCartDisc = marketDiscDao.findOne(discId);
+
+        Integer userId = (Integer) request.getSession().getAttribute(userSessionKey);
+        User user = userDao.findOne(userId);
+
+        user.removeCartDisc(oldCartDisc);
+        userDao.save(user);
+
         return "redirect:/shoppingCart";
     }
 }

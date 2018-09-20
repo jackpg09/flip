@@ -59,4 +59,6 @@ public class User {
     public List<MarketDisc> getCartDiscs() { return cartDisc; }
 
     public void addCartDisc(MarketDisc disc) {cartDisc.add(disc);}
+
+    public void removeCartDisc(MarketDisc disc) {cartDisc.remove(disc);}
 }
